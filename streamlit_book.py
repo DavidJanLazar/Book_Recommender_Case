@@ -78,7 +78,7 @@ if cols[0].button("Submit"):
     #passing the book IDs to one list 
     listofproducts = [books]
     print(listofproducts)
-    '''#Making recommendation for books according to cosine similarity, passing the listofproducts to reommend
+    #Making recommendation for books according to cosine similarity, passing the listofproducts to reommend
     recommendation_item = model.get_similar_items(items=listofproducts, k=10)
     #Creating dataframe
     dfitem = pd.DataFrame(recommendation_item)
@@ -92,7 +92,7 @@ if cols[0].button("Submit"):
     dfitem = dfitem.replace({"similar":IDtoNameDict})
     dfitem = dfitem.rename(columns={"similar":"recommended books"})
     st.write("These are the books you might be interested in, based on your previously liked books:")
-    st.table(dfitem.head(10))'''
+    st.table(dfitem.head(10))
 
  
 
