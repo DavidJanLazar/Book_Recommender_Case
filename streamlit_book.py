@@ -91,8 +91,8 @@ if cols[0].button("Submit"):
     dfitem = dfitem.drop(columns=["ProductId", "score", "rank", "item_occ"])
     dfitem = dfitem.replace({"similar":IDtoNameDict})
     dfitem = dfitem.rename(columns={"similar":"recommended books"})
-    st.write("These are the books you might be interested in, based on your previously liked books:")''
-    st.table(dfitem.head(10))
+    st.write("These are the books you might be interested in, based on your previously liked books:")
+    st.table(dfitem.head(10))'''
 
  
 
