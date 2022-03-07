@@ -9,7 +9,7 @@ from streamlit import caching
 
 st.set_page_config(page_title="Book Recommender System", page_icon="🐞", layout="centered")
 st.header("🐞 Book Recommender System!")
-st.subheader('This recommender suggests books based on your previously read books')
+st.subheader('David Project')
 
 @st.cache 
 def loaddata():
@@ -35,55 +35,67 @@ col_one_list_auth = listofauthors
 count = 1
 cols_1 = st.columns((2))
 selectbox_title_1 = cols_1[0].selectbox('Please choose the book title', col_one_list_tit, key = count)
-selectbox_author_1 = cols_1[1].selectbox('Please choose the author', col_one_list_auth, key = count)
+selectbox_auther_1 = cols_1[1].selectbox('Please choose the author', col_one_list_auth, key = count)
 
 count += 1
 cols_2 = st.columns((2))
 selectbox_title_2 = cols_2[0].selectbox('Please choose the book title', col_one_list_tit, key = count)
-selectbox_author_2 = cols_2[1].selectbox('Please choose the author', col_one_list_auth, key = count)
+selectbox_auther_2 = cols_2[1].selectbox('Please choose the author', col_one_list_auth, key = count)
 
 count += 1
 cols_3 = st.columns((2))
 selectbox_title_3 = cols_3[0].selectbox('Please choose the book title', col_one_list_tit, key = count)
-selectbox_author_3 = cols_3[1].selectbox('Please choose the author', col_one_list_auth, key = count)
+selectbox_auther_3 = cols_3[1].selectbox('Please choose the author', col_one_list_auth, key = count)
 
 count += 1
 cols_4 = st.columns((2))
 selectbox_title_4 = cols_4[0].selectbox('Please choose the book title', col_one_list_tit, key = count)
-selectbox_author_4 = cols_4[1].selectbox('Please choose the author', col_one_list_auth, key = count)
+selectbox_auther_4 = cols_4[1].selectbox('Please choose the author', col_one_list_auth, key = count)
 
 count += 1
 cols_5 = st.columns((2))
 selectbox_title_5 = cols_5[0].selectbox('Please choose the book title', col_one_list_tit, key = count)
-selectbox_author_5 = cols_5[1].selectbox('Please choose the author', col_one_list_auth, key = count)
+selectbox_auther_5 = cols_5[1].selectbox('Please choose the author', col_one_list_auth, key = count)
 
 cols = st.columns((1, 1))
-
-book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])
-book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])
-book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])
-book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])
-book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])
-books = [*book1, *book2, *book3, *book4, *book5] 
-
+books = []
+book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])
+book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])
+book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])
+book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])
+book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])
+books.extend(book1)
+books.extend(book2)
+books.extend(book3)
+books.extend(book4)
+books.extend(book5)
+st.write(len(books))
 
 if cols[0].button("Submit"):
     if len(books) != 0:
-        
-        book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])[0]
-        book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])[0]
-        book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])[0]
-        book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])[0]
-        book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])[0]
-        books = [*book1, *book2, *book3, *book4, *book5] 
+        books = []
+        book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])[0]
+        book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])[0]
+        book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])[0]
+        book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])[0]
+        book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_auther_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])[0]
+        books.extend(book1)
+        books.extend(book2)
+        books.extend(book3)
+        books.extend(book4)
+        books.extend(book5)
+ 
         #passing the book IDs to one list 
-        listofproducts = [books]
-        print(listofproducts)
+        listofproducts = books
+        st.write(listofproducts)
+
         #Making recommendation for books according to cosine similarity, passing the listofproducts to reommend
         recommendation_item = model.get_similar_items(items=listofproducts, k=10)
+        st.write(recommendation_item)
         #Creating dataframe
         dfitem = pd.DataFrame(recommendation_item)
         #Data manipulation and transformation to show the top 10 books to recommend
+        st.table(dfitem)
         dfitem['item_occ'] = dfitem.groupby('similar').similar.transform('count')
         dfitem = dfitem.sort_values(["item_occ", "score"],ascending=(False,False))
         dfitem = dfitem[~dfitem["similar"].isin(listofproducts)]
@@ -93,9 +105,9 @@ if cols[0].button("Submit"):
         dfitem = dfitem.replace({"similar":IDtoNameDict})
         dfitem = dfitem.rename(columns={"similar":"recommended books"})
         st.write("These are the books you might be interested in, based on your previously liked books:")
-        st.table(dfitem.head(10))
+        st.table(dfitem.head())
     else:
-        st.write("something is wrong")
+        st.write("There are no books satisfying your search!")
  
 
  
