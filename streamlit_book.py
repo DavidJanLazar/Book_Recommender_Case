@@ -7,9 +7,9 @@ import turicreate as tc
 from streamlit import caching
 
 
-st.set_page_config(page_title="Book Recommender System", page_icon="🐞", layout="centered")
-st.header("🐞 Book Recommender System!")
-st.subheader('David Project')
+st.set_page_config(page_title="Book Recommender System", layout="centered")
+st.header("Book Recommender System!")
+st.subheader('This suggests books based on your previously read books')
 
 @st.cache 
 def loaddata():
