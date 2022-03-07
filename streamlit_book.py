@@ -68,32 +68,34 @@ cols = st.columns((1, 1))
 
 
 if cols[0].button("Submit"):
+    if len(books) != 0:
         
-    book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])[0]
-    book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])[0]
-    book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])[0]
-    book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])[0]
-    book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])[0]
-    books = [*book1, *book2, *book3, *book4, *book5] 
-    #passing the book IDs to one list 
-    listofproducts = [books]
-    print(listofproducts)
-    #Making recommendation for books according to cosine similarity, passing the listofproducts to reommend
-    recommendation_item = model.get_similar_items(items=listofproducts, k=10)
-    #Creating dataframe
-    dfitem = pd.DataFrame(recommendation_item)
-    #Data manipulation and transformation to show the top 10 books to recommend
-    dfitem['item_occ'] = dfitem.groupby('similar').similar.transform('count')
-    dfitem = dfitem.sort_values(["item_occ", "score"],ascending=(False,False))
-    dfitem = dfitem[~dfitem["similar"].isin(listofproducts)]
-    dfitem = dfitem.drop_duplicates(subset=['similar', "item_occ"])
-    dfitem.index = range(len(dfitem))
-    dfitem = dfitem.drop(columns=["ProductId", "score", "rank", "item_occ"])
-    dfitem = dfitem.replace({"similar":IDtoNameDict})
-    dfitem = dfitem.rename(columns={"similar":"recommended books"})
-    st.write("These are the books you might be interested in, based on your previously liked books:")
-    st.table(dfitem.head(10))
-
+        book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])[0]
+        book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])[0]
+        book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])[0]
+        book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])[0]
+        book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])[0]
+        books = [*book1, *book2, *book3, *book4, *book5] 
+        #passing the book IDs to one list 
+        listofproducts = [books]
+        print(listofproducts)
+        #Making recommendation for books according to cosine similarity, passing the listofproducts to reommend
+        recommendation_item = model.get_similar_items(items=listofproducts, k=10)
+        #Creating dataframe
+        dfitem = pd.DataFrame(recommendation_item)
+        #Data manipulation and transformation to show the top 10 books to recommend
+        dfitem['item_occ'] = dfitem.groupby('similar').similar.transform('count')
+        dfitem = dfitem.sort_values(["item_occ", "score"],ascending=(False,False))
+        dfitem = dfitem[~dfitem["similar"].isin(listofproducts)]
+        dfitem = dfitem.drop_duplicates(subset=['similar', "item_occ"])
+        dfitem.index = range(len(dfitem))
+        dfitem = dfitem.drop(columns=["ProductId", "score", "rank", "item_occ"])
+        dfitem = dfitem.replace({"similar":IDtoNameDict})
+        dfitem = dfitem.rename(columns={"similar":"recommended books"})
+        st.write("These are the books you might be interested in, based on your previously liked books:")
+        st.table(dfitem.head(10))
+    else:
+        st.write("something is wrong")
  
 
  
