@@ -59,12 +59,12 @@ selectbox_author_5 = cols_5[1].selectbox('Please choose the author', col_one_lis
 
 cols = st.columns((1, 1))
 
-#book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])
-#book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])
-#book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])
-#book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])
-#book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])
-#books = [*book1, *book2, *book3, *book4, *book5] 
+book1 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_1)&(dfdict["Book-Title"] ==selectbox_title_1)].iloc[:,2])
+book2 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_2)&(dfdict["Book-Title"] ==selectbox_title_2)].iloc[:,2])
+book3 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_3)&(dfdict["Book-Title"] ==selectbox_title_3)].iloc[:,2])
+book4 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_4)&(dfdict["Book-Title"] ==selectbox_title_4)].iloc[:,2])
+book5 = list(dfdict[(dfdict["Book-Author"]==selectbox_author_5)&(dfdict["Book-Title"] ==selectbox_title_5)].iloc[:,2])
+books = [*book1, *book2, *book3, *book4, *book5] 
 
 
 if cols[0].button("Submit"):
